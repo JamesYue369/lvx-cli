@@ -1,0 +1,42 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.icon-android-hover {
+  background-image: url(spritesmith-generated/sprite.png);
+  background-position: 0px 0px;
+  width: 29px;
+  height: 31px;
+}
+.icon-android-normal {
+  background-image: url(spritesmith-generated/sprite.png);
+  background-position: -29px 0px;
+  width: 29px;
+  height: 31px;
+}
+.icon-ios-hover {
+  background-image: url(spritesmith-generated/sprite.png);
+  background-position: 0px -31px;
+  width: 18px;
+  height: 24px;
+}
+.icon-ios-normal {
+  background-image: url(spritesmith-generated/sprite.png);
+  background-position: -58px 0px;
+  width: 25px;
+  height: 29px;
+}

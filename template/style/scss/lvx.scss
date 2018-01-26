@@ -1,0 +1,12 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+.#{$prefix-css}-tooltip-top {
+	 @include tooltip(top);
+}
+.#{$prefix-css}-tooltip-bottom {
+	 @include tooltip(bottom);
+}
+.#{$prefix-css}-text-overflow {
+	 @include text-overflow;
+}

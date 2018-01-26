@@ -1,0 +1,65 @@
+// forms
+
+@mixin tooltip($align:bottom, $color:#fff, $bgColor: #000, $boderColor: #000) {
+	position: relative;
+    display: inline-block;
+    // border-bottom: 1px dotted black; 
+    .tooltiptext{
+    	visibility: hidden;
+	    min-width: 55px;
+	    background-color: $bgColor;
+	    color: $color;
+	    text-align: center;
+	    padding: 5px 5px;
+	    border-radius: 6px;
+	    border:1px solid $boderColor;
+	    position: absolute;
+	    z-index: 1;
+	    @if $align == bottom {
+	    	top: 110%;
+		    left: 50%;
+		    transform: translateX(-50%);
+	    } @else if $align == top {
+	    	top: 0;
+		    left: 50%;
+		    transform: translateX(-50%) translateY(-135%);
+	    }
+	    &:after{
+	    	content: " ";
+		    position: absolute;
+		    left: 50%;
+		    margin-left: -5px;
+		    border-width: 5px;
+		    border-style: solid;
+		    @if $align == bottom {
+		    	bottom: 100%;
+		    	border-color: transparent transparent $bgColor transparent;
+		    } @else if $align == top {
+		    	top:100%;
+		    	border-color: $bgColor transparent transparent transparent;
+		    }
+		    
+	    }
+	    &:before{
+	    	content: " ";
+		    position: absolute;
+		    left: 50%;
+		    margin-left: -7px;
+		    border-width: 7px;
+		    border-style: solid;
+		    @if $align == bottom {
+		    	bottom: 100%;
+		    	border-color: transparent transparent $boderColor transparent;
+		    } @else if $align == top {
+		    	top:100%;
+		    	border-color: $boderColor transparent transparent transparent;
+		    }
+		    
+	    }
+    }
+    &:hover{
+    	.tooltiptext{
+    		visibility: visible;
+    	}
+    }
+}

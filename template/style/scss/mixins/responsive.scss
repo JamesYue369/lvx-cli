@@ -1,0 +1,84 @@
+/* responsive tools 
+usage:
+@include responsive-default() {
+  body { color: red }
+  @include responsive-m() {
+	body {color: green}
+  }
+  @include responsive-pv() {
+	body {color: yellow}
+  }
+  @include responsive-phmd() {
+	body {color: blue}
+  }
+}
+
+*/
+
+/* default style
+*/
+@mixin responsive-default {
+	@content;
+}
+
+/*scree width < 768 px : device on mobile
+**m:mobile
+*/
+@mixin responsive-m {
+	@media only screen and (max-width: $responsive-xs-width){
+		@content;
+	}
+}
+
+/*scree width 768~992 px : device on all pads vertical
+**pv:vertical pad
+*/
+@mixin responsive-pv {
+	@media only screen and (min-width: $responsive-xs-width) and (max-width: $responsive-sm-width){
+		@content;
+	}
+}
+
+/*scree width 992~1200 px : device on all pads horizion and middle desktop screen
+**phmd: horizon pad and middle desktop screen
+*/
+@mixin responsive-phmd {
+	@media only screen and (min-width: $responsive-sm-width) and (max-width: $responsive-md-width){
+		@content;
+	}
+}
+
+/*scree width >1200 px : device on big desktop
+**ld: large desktop screen
+*/
+@mixin responsive-ld {
+	@media only screen and (min-width: $responsive-md-width){
+		@content;
+	}
+}
+/*scree width  greater than define width px
+**minWidth: 自定义最小宽度
+*/
+@mixin responsive-gt($minWidth) {
+	@media only screen and (min-width: $minWidth){
+		@content;
+	}
+}
+
+/*scree width  less than define width px
+**maxWidth: 自定义最大宽度
+*/
+@mixin responsive-lt($maxWidth) {
+	@media only screen and (max-width: $maxWidth){
+		@content;
+	}
+}
+/*scree width $minWidth~$maxWidth: user define width min & max width
+**minWidth: 自定义最小宽度
+**maxWidth: 自定义最大宽度
+*/
+@mixin responsive-customize($minWidth, $maxWidth) {
+	@media only screen and (min-width: $minWidth) and (max-width: $maxWidth){
+		@content;
+	}
+}

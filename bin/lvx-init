@@ -1,0 +1,88 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+const inquirer = require('inquirer')
+const async = require('async')
+const chalk = require('chalk')
+const Metalsmith = require('metalsmith')
+const path = require('path')
+const exists = require('fs').existsSync
+const render = require('consolidate').handlebars.render
+program
+  .usage('[project-name]')
+  .parse(process.argv)
+
+const initQuestions = [{
+  type: 'input',
+  message:'project name',
+  default: 'lvx-template',
+  name: 'projectName',
+},{
+    type: 'input',
+    message:'description',
+    default: 'A lvx.js project',
+    name: 'description',
+},{
+  type: 'input',
+  message:'author',
+  default: 'jamesyue <6850726@qq.com>',
+  name: 'author',
+}]
+
+const name = program.args[0]
+const to = path.resolve(name || '.')
+
+if (exists(to)) {
+  inquirer.prompt([{
+    type: 'confirm',
+    message: 'Target directory exists. is Continue?',
+    name: 'ok'
+  }]).then(answers => {
+    if (answers.ok) {
+      generate()
+    }
+  }).catch()
+} else {
+  generate()
+}
+function generate() {
+  inquirer.prompt(initQuestions).then(answers => {
+    const metalsmith = Metalsmith(path.join(__dirname,'../', 'template'))
+    Object.assign(metalsmith.metadata(), {
+      name: name
+    }, answers)
+    metalsmith.use(renderTemplateFiles())
+    metalsmith.clean(false)
+    .source('.')
+    .destination(to)
+    .build((err, files) => {
+      if (err) {
+        console.error (chalk.red(err))
+      } else {
+        console.log(chalk.white('success'))
+      }
+    })
+  }).catch()
+
+  function renderTemplateFiles () {
+    return (files, metalsmith, done) => {
+      const keys = Object.keys(files)
+      const metaData = metalsmith.metadata()
+      async.each(keys, (file, next) => {
+        const str = files[file].contents.toString()
+        // do not attempt to render files that do not have mustaches
+        if (!/{{([^{}]+)}}/g.test(str)) {
+          return next()
+        }
+        render(str, metaData, (err, res) => {
+          if (err) {
+            err.message = `[${file}] ${err.message}`
+            return next(err)
+          }
+          files[file].contents = new Buffer(res)
+          next()
+        })
+      }, done)
+    }
+  }
+}
