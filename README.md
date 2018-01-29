@@ -1,6 +1,6 @@
 A simple CLI for scaffolding Vue.js projects.
 
-### installation###
+###Installation
 
 Prerequisited: [Node.js](https://nodejs.org/en/),npm version 5+,yarn version 1+
 
@@ -10,7 +10,7 @@ or
 $ yarn global add lvx-cli
 ```
 
-### Usage###
+###Usage
 
 ``` bash
 $lvx init <project-name>
