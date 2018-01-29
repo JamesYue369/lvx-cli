@@ -4,7 +4,7 @@ A simple CLI for scaffolding Vue.js projects.
 
 Prerequisited: [Node.js](https://nodejs.org/en/),npm version 5+,yarn version 1+
 
-```bash
+``` bash
 $ npm install -g lvx-cli 
 or
 $ yarn global add lvx-cli
@@ -12,13 +12,13 @@ $ yarn global add lvx-cli
 
 ### Usage###
 
-```bash
+``` bash
 $lvx init <project-name>
 ```
 
 example:
 
-```ba
+``` bash
 $lvx init lvx-demo
 ```
 
