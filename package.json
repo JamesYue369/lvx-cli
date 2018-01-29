@@ -19,10 +19,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JamesYue369/Lvx.git"
+    "url": "git+https://github.com/JamesYue369/lvx-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/JamesYue369/Lvx/issues"
+    "url": "https://github.com/JamesYue369/lvx-cli/issues"
   },
   "author": "james yue",
   "license": "MIT",
