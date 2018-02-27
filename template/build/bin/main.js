@@ -67,7 +67,10 @@ p.then(function (v) {
 	  store,
 	  render: h => h(App)
 	})
-	_app.$mount('#_lvx')
+	document.addEventListener('DOMContentLoaded', function () {
+	    _app.$mount('#_lvx')
+	})
+	 // _app.$mount('#_lvx')
 	Vue.nextTick(function () {
 		window._appReadyCbs.forEach((cb) => {
 		    if (typeof cb === 'function') {
@@ -84,7 +87,10 @@ const _app = new Vue({
   store,
   render: h => h(App)
 })
-_app.$mount('#_lvx')
+document.addEventListener('DOMContentLoaded', function () {
+    _app.$mount('#_lvx')
+})
+// _app.$mount('#_lvx')
 Vue.nextTick(function () {
 	window._appReadyCbs.forEach((cb) => {
 	    if (typeof cb === 'function') {

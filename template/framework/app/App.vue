@@ -1,5 +1,5 @@
 <template>
-  <div id="_lx">
+  <div id="_lvx">
     <lvx-loading ref="loading"></lvx-loading>
     <component v-if="layout" :is="layout"></component>
   </div>

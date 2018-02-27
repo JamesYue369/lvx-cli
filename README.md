@@ -1,6 +1,6 @@
 A simple CLI for scaffolding Vue.js projects.
 
-###Installation
+### Installation
 
 Prerequisited: [Node.js](https://nodejs.org/en/),npm version 5+,yarn version 1+
 
@@ -10,7 +10,7 @@ or
 $ yarn global add lvx-cli
 ```
 
-###Usage
+### Usage
 
 ``` bash
 $lvx init <project-name>
@@ -24,7 +24,7 @@ $lvx init lvx-demo
 
 The above command will generate template at current path `./lvx-demo` , and prompts for some questions.
 
-###License
+### License
 
 [MIT](http://opensource.org/licenses/MIT)
 

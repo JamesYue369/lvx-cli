@@ -23,7 +23,7 @@ app.use('/user', proxy({target: 'https://dev.yunhetong.com', changeOrigin: true,
 app.use('/cas', proxy({target: 'https://dev.yunhetong.com', changeOrigin: true, secure: false,}))
 app.use('/contract', proxy({target: 'https://dev.yunhetong.com', changeOrigin: true, secure: false,}))
 app.use(require('connect-history-api-fallback')())
-app.use(express.static(path.join(__dirname, '../dist/saas')));
+app.use(express.static(path.join(__dirname, '../dist/lvx')));
 
 // development only
 if ('development' == app.get('env')) {

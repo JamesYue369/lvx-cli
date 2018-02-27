@@ -16,18 +16,19 @@ module.exports = {
   css: ['~/static/css/bootstrap/css/bootstrap.min.css', '~/static/css/animate/animate.css', '~/style/scss/lvx.variables.scss', '~/style/scss/lvx.scss',  '~/style/scss/common.scss', '~/assets/style/sprite/sprite.css'],
   plugins: [{
     src: '~/plugins/lvx-ui',
-    sync: true
+    sync: false
   },{
     src: '~/plugins/ui',
-    sync: true
+    sync: false
   },{
     src: '~/plugins/vuelidate',
     sync: false
   }],
   build: {
+    prerender: false,
     dist: 'dist',
     projectName: 'lvx',
-    publicPath: '',
+    publicPath: '/',
     extend(config) {
       return config
     }

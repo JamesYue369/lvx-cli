@@ -8,7 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-
+const PrerenderSpaPlugin = require('prerender-spa-plugin')
 const env = require('../config/env/prod.env')
 
 const webpackConfig = merge(baseWebpackConfig, {
@@ -59,14 +59,15 @@ const webpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: 'index.html',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
-      },
+      // inject: true,
+      inject: 'head',
+      // minify: {
+      //   removeComments: true,
+      //   collapseWhitespace: true,
+      //   removeAttributeQuotes: true
+      //   // more options:
+      //   // https://github.com/kangax/html-minifier#options-quick-reference
+      // },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),
@@ -111,7 +112,19 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+
+    new PrerenderSpaPlugin(
+      // Absolute path to compiled SPA
+      path.join(__dirname, '../dist/lvx'),
+      // List of routes to prerender
+      [ '/', '/login', '/demo' ],
+      {
+        ignoreJSErrors: true,
+        captureAfterElementExists: '#_lvx',
+        indexPath: path.resolve(__dirname, '../dist/lvx/index.html')
+      }
+    )
   ]
 })
 
@@ -137,5 +150,12 @@ if (config.build.bundleAnalyzerReport) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
-
+// webpackConfig.plugins.push(
+//   new PrerenderSpaPlugin(
+//     // Absolute path to compiled SPA
+//     path.join(__dirname, '../dist/lvx'),
+//     // List of routes to prerender
+//     [ '/', '/login', '/demo' ]
+//   )
+// )
 module.exports = webpackConfig

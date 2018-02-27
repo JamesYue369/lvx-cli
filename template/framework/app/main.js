@@ -26,23 +26,27 @@ const store = createStore();
 const router = createRouter();
 
 
+plugin0()
+
+plugin1()
+
 plugin2()
 
 
-const p = Promise.all([plugin0(),plugin1()])
-p.then(function (v) {
-	const _app = new Vue({
-	  router,
-	  store,
-	  render: h => h(App)
-	})
-	_app.$mount('#_lvx')
-	Vue.nextTick(function () {
-		window._appReadyCbs.forEach((cb) => {
-		    if (typeof cb === 'function') {
-		     	cb(_app)
-		    }
-		})
+const _app = new Vue({
+  router,
+  store,
+  render: h => h(App)
+})
+document.addEventListener('DOMContentLoaded', function () {
+    _app.$mount('#_lvx')
+})
+// _app.$mount('#_lvx')
+Vue.nextTick(function () {
+	window._appReadyCbs.forEach((cb) => {
+	    if (typeof cb === 'function') {
+	     	cb(_app)
+	    }
 	})
 })
 
