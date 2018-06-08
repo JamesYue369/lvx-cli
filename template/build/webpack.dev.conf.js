@@ -6,7 +6,6 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-const PrerenderSpaPlugin = require('prerender-spa-plugin')
 const path = require('path')
 
 const devWebpackConfig = merge(baseWebpackConfig, {
@@ -45,21 +44,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: 'head'
-      // inject: true
+      inject: true
     }),
-    new FriendlyErrorsPlugin(),
-    new PrerenderSpaPlugin(
-       // Absolute path to compiled SPA
-      path.join(__dirname, '../dist/lvx'),
-      // List of routes to prerender
-      [ '/', '/login', '/demo' ],
-      {
-        ignoreJSErrors: true,
-        captureAfterElementExists: '#_lvx',
-        indexPath: path.resolve(__dirname, '../dist/lvx/index.html')
-      }
-    )
+    new FriendlyErrorsPlugin()
+    
   ]
 })
 

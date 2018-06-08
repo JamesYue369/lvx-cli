@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App.vue'
 import MetaInfo from 'vue-meta-info'
-import LvxPlugin from '~/framework/core/lvx-plugin'
-import base from '../core/vue-base.vue'
+import LxPlugin from '~/framework/core/lvx-plugin'
 import  { createRouter } from './router'
 import createStore from '~/store'
 import _ from 'lodash'
@@ -40,7 +39,7 @@ import plugin<%= i%> from '<%= plugin.src%>'
 %>
 Vue.use(Vuex)
 Vue.use(MetaInfo)
-Vue.use(LvxPlugin)
+Vue.use(LxPlugin)
 const store = createStore();
 const router = createRouter();
 
@@ -60,17 +59,16 @@ pluginsTemp.forEach(function (v, i) {
 if (syncPlugins.length) {
 	let pluginsStr = syncPlugins.join(',')
 %>
+let _app;
 const p = Promise.all([<%= pluginsStr%>])
 p.then(function (v) {
-	const _app = new Vue({
+	_app = new Vue({
 	  router,
 	  store,
 	  render: h => h(App)
-	})
-	document.addEventListener('DOMContentLoaded', function () {
-	    _app.$mount('#_lvx')
-	})
-	 // _app.$mount('#_lvx')
+	});
+	window._lvx = {};
+	_app.$mount('#_lvx')
 	Vue.nextTick(function () {
 		window._appReadyCbs.forEach((cb) => {
 		    if (typeof cb === 'function') {
@@ -82,15 +80,13 @@ p.then(function (v) {
 <%
 } else {
 %>
-const _app = new Vue({
+_app = new Vue({
   router,
   store,
   render: h => h(App)
-})
-document.addEventListener('DOMContentLoaded', function () {
-    _app.$mount('#_lvx')
-})
-// _app.$mount('#_lvx')
+});
+window._lvx = {};
+_app.$mount('#_lvx')
 Vue.nextTick(function () {
 	window._appReadyCbs.forEach((cb) => {
 	    if (typeof cb === 'function') {
@@ -101,3 +97,5 @@ Vue.nextTick(function () {
 <%
 }
 %>
+
+export default _app;

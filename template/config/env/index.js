@@ -13,7 +13,8 @@ let config = {
         proxyTable: appConfig.dev.proxyTable ? appConfig.dev.proxyTable : {},
 
         // Various Dev Server settings
-        host: 'localhost', // can be overwritten by process.env.HOST
+        // host: 'localhost', // can be overwritten by process.env.HOST
+        host: appConfig.dev.host || 'localhost',
         port: appConfig.dev.port || 8080, // can be overwritten by process.env.HOST, if port is in use, a free one will be determined
         autoOpenBrowser: false,
         errorOverlay: true,
@@ -45,7 +46,7 @@ let config = {
         // (https://github.com/webpack/css-loader#sourcemaps)
         // In our experience, they generally work as expected,
         // just be aware of this issue when enabling this option.
-        cssSourceMap: false,    
+        cssSourceMap: false,
     },
     build: {
         // Template for index.html
@@ -62,19 +63,21 @@ let config = {
         productionSourceMap: true,
         // https://webpack.js.org/configuration/devtool/#production
         devtool: '#source-map',
-        
+
         // Gzip off by default as many popular static hosts such as
         // Surge or Netlify already gzip all static assets for you.
         // Before setting to `true`, make sure to:
         // npm install --save-dev compression-webpack-plugin
         productionGzip: false,
         productionGzipExtensions: ['js', 'css'],
-        
+
         // Run the build command with an extra argument to
         // View the bundle analyzer report after build finishes:
         // `npm run build --report`
         // Set to `true` or `false` to always turn it on or off
-        bundleAnalyzerReport: process.env.npm_config_report
+        bundleAnalyzerReport: process.env.npm_config_report,
+        prerender: !!appConfig.build.prerender,
+        projectName: appConfig.build.projectName
     }
 }
 config.build = appConfig.build.extend(config.build)

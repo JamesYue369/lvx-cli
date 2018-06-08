@@ -3,6 +3,7 @@ const fs = require('fs')
 const _ = require('lodash')
 const Glob = require('glob')
 const pify = require('pify')
+const serialize = require('serialize-javascript');
 const cons = require('consolidate')
 const config = require('../config/env/')
 const appConfig = require('../lvx.config')
@@ -11,7 +12,8 @@ const pkg = require('../package.json')
 const hash = require('hash-sum')
 const glob = pify(Glob)
 const webpack = require('webpack')
-
+const decode = require('unescape');
+// const metaDic = require('../config/meta-router')
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsSubDirectory
@@ -152,6 +154,7 @@ function cleanChildrenRoutes (routes, isChild = false) {
   return routes
 }
 exports.generateRoutes = async function (isProduction) {
+  // console.log(metaDic)
   const createRoutes = function (files, srcDir) {
     let routes = []
     files.forEach((file) => {
@@ -211,25 +214,35 @@ exports.generateRoutes = async function (isProduction) {
   }
   const files = await glob('pages/**/*.vue', { cwd: './' })
   // console.log(files)
-
-  let generatedRoutes = appConfig.router.extendRoutes(createRoutes(files, './'), isProduction)
-  // console.log(generatedRoutes)
-
+  let fileRoutesData = createRoutes(files, './'); 
+  let routesMetaData = appConfig.router.meta;
+  _.forEach(routesMetaData, function(rmd) { //add meta {} to fileRoutesData
+    let [md, routes] = [rmd.data, rmd.routers];
+    _.forEach(routes, function(r) {
+      let tempFileRoute = _.find(fileRoutesData, function(o) { return o.path == r; });
+      tempFileRoute.meta = Object.assign(tempFileRoute.meta || {}, md);
+    });
+  });
+  let generatedRoutes = appConfig.router.extendRoutes(fileRoutesData, isProduction)
+  
   cons.ejs('./build/bin/router.js', {
     router: {
       routes: generatedRoutes,
       mode: appConfig.router.mode || 'history',
       base: appConfig.router.base || '',
-      linkActiveClass: appConfig.router.linkActiveClass || 'lvx-link-active',
-      linkExactActiveClass: appConfig.router.linkExactActiveClass || 'lvx-link-exact-active',
-      fallback: false
+      scrollBehavior: appConfig.router.scrollBehavior,
+      linkActiveClass: appConfig.router.linkActiveClass || 'lx-link-active',
+      linkExactActiveClass: appConfig.router.linkExactActiveClass || 'lx-link-exact-active',
+      fallback: false,
     },
     hash: hash,
-    _: _
+    _: _,
+    serialize: serialize,
+    decode: decode
   })
   .then(function (str) {
     let routerPath = './framework/app/router.js';
-
+    debugger
     // console.log(_.unescape(str))
     fs.writeFileSync(routerPath, _.unescape(str) );
   })

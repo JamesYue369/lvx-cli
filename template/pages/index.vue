@@ -16,10 +16,8 @@
 </template>
 
 <script>
-import base from '~/framework/core/vue-base'
 export default {
   name: 'home',
-  extends: base,
   metaInfo: {
     title: 'Lvx',
     meta: [{

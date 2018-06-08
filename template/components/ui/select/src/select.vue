@@ -8,14 +8,14 @@
 <script>
 
   export default {
-    name: 'LvxSelect',
+    name: 'SasSelect',
     render (h) {
       // debugger
       return (
         <div class="sas-select">
-          <el-select { ...{ attrs: this.$props } } size="small" on-change={this.changeHandle}  v-model={this.value}>
+          <lvx-select { ...{ attrs: this.$props } } size="small" on-change={this.changeHandle}  v-model={this.value}>
             {this.$slots.default}
-          </el-select>  
+          </lvx-select>  
         </div>
         );
     },
@@ -78,8 +78,8 @@
 @import "~styles/base.scss";
   .sas-select{
     display: inline;
-    .el-input--small {
-      .el-input__inner{
+    .lvx-input--small {
+      .lvx-input__inner{
         height: 34px;
       }
     }

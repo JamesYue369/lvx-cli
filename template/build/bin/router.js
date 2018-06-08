@@ -14,13 +14,27 @@ function recursiveRoutes(routes, tab, components) {
     components.push({ _name: route._name, component: route.component, name: route.name,_path: route.path, _filepath: route.filepath })
     res += tab + '{\n'
     res += tab + '\tpath: ' + "\'" + route.path + "\'" + ',\n'
-    res += tab + '\tcomponent: ' + route._name
+    res += tab + '\tcomponents: {\n' + '\t\t\t\t\'' + (route.meta ? route.meta.layout || 'default' : 'default') + '\': ' + route._name + '\n\t\t\t}'
     res += (route.name) ? ',\n\t' + tab + 'name: ' + "\'" + route.name +"\'" : ''
+    if(route.meta) {
+      // res += ',\n\t' + tab + 'meta: ' + "{\n"
+      // _.forEach(route.meta, function(value, key) {
+      //   console.log(value);
+      //   res += '\t\t\t\t' + key + ': ' + value + ',\n'
+      // });
+      // res += tab + '\t' + "}\n"
+      // debugger
+      res += ',\n\t' + tab + 'meta: ' + JSON.stringify(route.meta)
+    }
+
     res += (route.children) ? ',\n\t' + tab + 'children: [\n' + recursiveRoutes(routes[i].children, tab + '\t\t', components) + '\n\t' + tab + ']' : ''
     res += '\n' + tab + '}' + (i + 1 === routes.length ? '' : ',\n')
   })
+  debugger
   return res
 }
+
+
 const _components = []
 const _routes = recursiveRoutes(router.routes, '\t\t', _components)
 _.uniqBy(_components).forEach((route) => { %>const <%= route._name %> = () => import('<%= "~/" + route._filepath %>' /* webpackChunkName: "<%= route._filepath.replace('.vue', '') %>" */).then(m => m.default || m)
@@ -62,7 +76,7 @@ export function createRouter () {
     linkExactActiveClass: '<%= router.linkExactActiveClass %>',
     scrollBehavior,
     routes: [
-<%= _routes %>
+<%- _routes %>
     ],
     fallback: <%= router.fallback %>
   })

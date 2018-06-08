@@ -1,13 +1,13 @@
 <template>
   <div class="sas-breadcrumb">
-    <el-breadcrumb  :separator="separator" >
+    <lvx-breadcrumb  :separator="separator" >
       <slot></slot>
-    </el-breadcrumb>  
+    </lvx-breadcrumb>  
   </div>
 </template>
 <script>
   export default {
-    name: 'LvxBreadcrumb',
+    name: 'SasBreadcrumb',
     data: function () {
       return {
         separator: '/'

@@ -5,14 +5,14 @@
 </template> -->
 <script>
   export default {
-    name: 'LvxOption',
+    name: 'SasOption',
     data: function () {
       return {
         
       };
     },
     render (h,context) {
-      return h('el-option', {
+      return h('lvx-option', {
         props: {...this.$props}
       }, this.$slots.default)
     }, 

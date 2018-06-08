@@ -1,15 +1,19 @@
-
-import metaDic from '~/config/meta-router'
-export default function ({store, to, from, next}) {
-	return new Promise((resolve, reject)=>{
-		if (metaDic[to.name].requireAuth) {
-			if(store.state.isLogin) {
-				resolve(true)
-			} else {
-				next('/login')
-			}
-		} else {
-			resolve(true)
-		}
-	})
+export default function ({store, to, from, next}, iterator) {
+  return new Promise((resolve, reject)=>{
+    if (to.meta.requireAuth) {
+      if(store.state.isLogin) {
+        resolve(true);
+        if(iterator) {
+          iterator.next()
+        }
+      } else {
+        next({path: '/login'});
+      }
+    } else {
+      resolve(true);
+      if(iterator) {
+        iterator.next()
+      }
+    }
+  })
 }

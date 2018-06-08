@@ -1,11 +1,11 @@
 <template>
-  <el-breadcrumb-item :to="to" :replace="replace">
+  <lvx-breadcrumb-item :to="to" :replace="replace">
     <slot></slot>
-  </el-breadcrumb-item>
+  </lvx-breadcrumb-item>
 </template>
 <script>
   export default {
-    name: 'LvxBreadcrumbItem',
+    name: 'SasBreadcrumbItem',
     props: {
       to: {},
       replace: Boolean

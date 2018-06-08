@@ -4,29 +4,29 @@
         Tip hover here
         <span class="tooltiptext">aa</span>
     </div>
-    <lvx-breadcrumb >
-        <lvx-breadcrumb-item :to="{ path: '/' }">首页</lvx-breadcrumb-item>
-        <lvx-breadcrumb-item>活动管理</lvx-breadcrumb-item>
-        <lvx-breadcrumb-item>活动列表</lvx-breadcrumb-item>
-        <lvx-breadcrumb-item >活动详情</lvx-breadcrumb-item>
-    </lvx-breadcrumb>
+    <sas-breadcrumb >
+        <sas-breadcrumb-item :to="{ path: '/' }">首页</sas-breadcrumb-item>
+        <sas-breadcrumb-item>活动管理</sas-breadcrumb-item>
+        <sas-breadcrumb-item>活动列表</sas-breadcrumb-item>
+        <sas-breadcrumb-item >活动详情</sas-breadcrumb-item>
+    </sas-breadcrumb>
     <div>
-        <lvx-select  placeholder="请选择" :model="value" @change="change" >
-            <lvx-option
+        <sas-select  placeholder="请选择" :model="value" @change="change" >
+            <sas-option
               v-for="item in options"
               :key="item.value"
               :label="item.label"
               :value="item.value">
-            </lvx-option>
-        </lvx-select>
-        <lvx-select  placeholder="请选择" :model="value" >
-            <lvx-option
+            </sas-option>
+        </sas-select>
+        <sas-select  placeholder="请选择" :model="value" >
+            <sas-option
               v-for="item in options"
               :key="item.value"
               :label="item.label"
               :value="item.value">
-            </lvx-option>
-        </lvx-select>
+            </sas-option>
+        </sas-select>
         
     </div>
 </section>
@@ -34,10 +34,8 @@
 </template>
 
 <script>
-import base from '~/framework/core/vue-base'
 export default {
   name: 'demo',
-  extends: base,
   metaInfo: {
     title: '示例'
   },

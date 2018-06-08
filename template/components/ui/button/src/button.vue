@@ -1,7 +1,7 @@
 <script>
 
   export default {
-    name: 'LvxButton',
+    name: 'SasButton',
     render (h) {
       // debugger
       const categoryMap = {
@@ -11,9 +11,9 @@
         dotted: 'sas-button--dotted'
       }
       const sizeMap = {
-        default: 'el-button--default',
-        medium: 'el-button--medium',
-        small: 'el-button--small'
+        default: 'lvx-button--default',
+        medium: 'lvx-button--medium',
+        small: 'lvx-button--small'
       }
       const data = {
         class: [categoryMap[this.category], sizeMap[this.size]],
@@ -21,9 +21,9 @@
       }
       // debugger
       return (
-        <el-button class="sas-button" {...data} on-click={this.clickHandle}>
+        <lvx-button class="sas-button" {...data} on-click={this.clickHandle}>
           {this.$slots.default}
-        </el-button>
+        </lvx-button>
         );
     },
     data: function () {
@@ -63,13 +63,13 @@
       color: #fff;
       border-color: $theme-color;
 
-      &.el-button--default{
+      &.lvx-button--default{
         padding: 9px 20px;
       }
-      &.el-button--medium{
+      &.lvx-button--medium{
         padding: 8px 20px;
       }
-      &.el-button--small{
+      &.lvx-button--small{
         padding: 5px 15px;
       }
       &:hover{
@@ -93,13 +93,13 @@
       color: $theme-color;
       border-color: $theme-color;
 
-      &.el-button--default{
+      &.lvx-button--default{
         padding: 9px 20px;
       }
-      &.el-button--medium{
+      &.lvx-button--medium{
         padding: 8px 20px;
       }
-      &.el-button--small{
+      &.lvx-button--small{
         padding: 5px 15px;
       }
       &:hover{
@@ -124,13 +124,13 @@
       color: $font-color;
       border-color: $border-color;
       
-      &.el-button--default{
+      &.lvx-button--default{
         padding: 9px 20px;
       }
-      &.el-button--medium{
+      &.lvx-button--medium{
         padding: 8px 20px;
       }
-      &.el-button--small{
+      &.lvx-button--small{
         padding: 5px 15px;
       }
       &:hover{
@@ -158,13 +158,13 @@
       border-color: $theme-color;
       border-style: dashed;
       
-      &.el-button--default{
+      &.lvx-button--default{
         padding: 9px 20px;
       }
-      &.el-button--medium{
+      &.lvx-button--medium{
         padding: 8px 20px;
       }
-      &.el-button--small{
+      &.lvx-button--small{
         padding: 5px 15px;
       }
       &:hover{
