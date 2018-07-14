@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import App from './App.vue'
 import MetaInfo from 'vue-meta-info'
 import LxPlugin from '~/framework/core/lvx-plugin'
+import fetchData from '~/framework/core/mixin/fetch-data'
 import  { createRouter } from './router'
 import createStore from '~/store'
 import _ from 'lodash'
@@ -40,6 +41,7 @@ import plugin<%= i%> from '<%= plugin.src%>'
 Vue.use(Vuex)
 Vue.use(MetaInfo)
 Vue.use(LxPlugin)
+Vue.mixin(fetchData);
 const store = createStore();
 const router = createRouter();
 

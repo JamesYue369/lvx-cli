@@ -75,32 +75,31 @@ export default {
         // debugger
         self.initLayout(matchVues.length ? lt ? lt: 'default' : 'default')
         .then(()=>{
-          let self1 = this;
-          let self = matchVues[0];
-          let customeLoadingInstance = null;
-          if(typeof self.loading === 'function' || typeof self.loading === 'object') {
-            customeLoadingInstance = self.loading(self1);
-          } else {
-            this.$lvx.loading.start()
-          }
-          if (typeof self.fetchData === 'function') {
-            self.fetchData.call(this, to, from, self1)
-            .then(()=>{
-              if(customeLoadingInstance) {
-                customeLoadingInstance.close();
-              } else {
-                this.$lvx.loading.finish()
-              }
-            })
-          } else {
-            setTimeout(()=>{
-              if(customeLoadingInstance) {
-                customeLoadingInstance.close();
-              } else {
-                this.$lvx.loading.finish()
-              }
-            }, 0);
-          }
+          // let matchVm = matchVues[0];
+          // let customeLoadingInstance = null;
+          // if(typeof matchVm.loading === 'function' || typeof matchVm.loading === 'object') {
+          //   customeLoadingInstance = matchVm.loading(self);
+          // } else {
+          //   this.$lvx.loading.start()
+          // }
+          // if (typeof matchVm.fetchData === 'function') {
+          //   matchVm.fetchData.call(this, to, from, self)
+          //   .then(()=>{
+          //     if(customeLoadingInstance) {
+          //       customeLoadingInstance.close();
+          //     } else {
+          //       this.$lvx.loading.finish()
+          //     }
+          //   })
+          // } else {
+          //   setTimeout(()=>{
+          //     if(customeLoadingInstance) {
+          //       customeLoadingInstance.close();
+          //     } else {
+          //       this.$lvx.loading.finish()
+          //     }
+          //   }, 0);
+          // }
           next()
         })
       };
@@ -168,26 +167,7 @@ export default {
         .catch((e) => {
         })
       });
-    },
-    checkAuth (routerName) {
-      if (metaDic[routerName].requireAuth) {
-        return checkLogin()
-      } else {
-        return true
-      }
-      
-    },
-    checkRouterExist (path) {
-      return this._getNameByPath(path)
-    },
-    _getNameByPath (routerPath) {
-      let routers = this.$router.options.routes
-      let name = _.find(routers, function (r) {
-        return r.path === routerPath
-      })
-      return !!name ? name.name : null
     }
-
   },
   components: {
     LxLoading

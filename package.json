@@ -11,7 +11,8 @@
     "template"
   ],
   "bin": {
-    "lvx": "bin/lvx"
+    "lvx": "bin/lvx",
+    "lvx init": "bin/lvx-init"
   },
   "keywords": [
     "lvx",
