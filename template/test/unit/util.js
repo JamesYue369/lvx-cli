@@ -1,11 +1,32 @@
 import Vue from 'vue';
-import MockAdapter from 'axios-mock-adapter'
+import Vuex from 'vuex';
+import LxPlugin from '~/framework/core/lx-plugin';
+import  { createRouter } from '~/framework/app/router';
+import createStore from '~/store';
+import MockAdapter from 'axios-mock-adapter';
+Vue.use(Vuex)
+Vue.use(LxPlugin)
+const store = createStore();
+const router = createRouter();
 let id = 0;
 
 const createElm = function() {
   const elm = document.createElement('div');
 
   elm.id = 'app' + ++id;
+  document.body.appendChild(elm);
+
+  return elm;
+};
+
+/**
+ * 创建dom 
+ * @param  {String} eleId
+ */
+exports.createElmById = function(eleId) {
+  const elm = document.createElement('div');
+
+  elm.id = eleId;
   document.body.appendChild(elm);
 
   return elm;
@@ -33,6 +54,14 @@ exports.createVue = function(Compo, mounted = false) {
     Compo = { template: Compo };
   }
   return new Vue(Compo).$mount(mounted === false ? null : createElm());
+};
+
+exports.createVueApp = function(Compo, mounted = false) {
+  return new Vue({
+    router,
+    store,
+    render: h => h(Compo)
+  }).$mount(mounted === false ? null : createElm());
 };
 
 /**

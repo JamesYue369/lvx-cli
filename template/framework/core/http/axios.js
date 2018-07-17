@@ -5,14 +5,15 @@ import  { createRouter } from '../../app/router'
 const router = createRouter();
 let options = {
   timeout: 100000,
-  params: {
-    _: +new Date()
-  },
   headers: {'X-Requested-With': 'XMLHttpRequest'},
 };
 
 let axiosInstance = axios.create(options);
 axiosInstance.interceptors.request.use((config)=> {
+  if(!config.params) {
+    config.params = {};
+  }
+  config.params._ = Date.now();
   return config;
 }, function (error) {
   return Promise.reject(error);

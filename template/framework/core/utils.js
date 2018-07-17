@@ -43,4 +43,31 @@ const sleep = function (numberMillis) {
             return;
     }
 }
-export {asyncLoadJsFile, asyncLoadCssFile, sleep}
+const isNotBrowser = function () {
+    const [browser, browserDic] = [detect(), {
+        'chrome': 31,
+        'firefox':15,
+        'ie': 9
+    }]
+    return parseInt(browser.version, 10) <= browserDic[browser.name]
+}
+/*
+返回值：
+    类型: object
+    值：{
+    name: 'chrome',
+    version: '50.0.1',
+    os: 'windows'
+    }
+*/
+const getBrowserObject = function () {
+    return detect();
+}
+const getBrowserVisiableSize = function () {
+  return {
+    wdith: document.documentElement.clientWidth || document.body.clientWidth,
+    height: document.documentElement.clientHeight || document.body.clientHeight
+  }
+}
+
+export {asyncLoadJsFile, asyncLoadCssFile, sleep, isNotBrowser, getBrowserObject, getBrowserVisiableSize }
