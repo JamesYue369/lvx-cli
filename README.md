@@ -29,7 +29,5 @@ The above command will generate template at current path `./lvx-demo` , and prom
 [MIT](http://opensource.org/licenses/MIT)
 
 ##常用CMD命令行
-# 强制删除文件夹及文件  rd/s/q 盘符:\某个文件夹
-# "@prerenderer/renderer-jsdom": "^0.1.4",
-# "prerender-spa-plugin": "^3.1.0",
+
 
