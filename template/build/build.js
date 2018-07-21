@@ -8,8 +8,8 @@ const path = require('path')
 
 const chalk = require('chalk')
 const webpack = require('webpack')
-const config = require('../config/env')
-const webpackConfig = require('./webpack.prod.conf')
+const config = require('./env')
+const webpackConfig = require('./webpack/webpack.prod.conf')
 
 const spinner = ora('building for production...')
 spinner.start()

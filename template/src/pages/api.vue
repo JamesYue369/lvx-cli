@@ -1,48 +1,47 @@
 <template>
-  <div class="page-404">
-
-  </div>
+  <section class="lvx-api">
+      这是API页面
+      <cus-list/>
+  </section>
 </template>
-
 <script>
-
+import apis from '~/src/config/api'
 export default {
-  name: 'not-find',
+  name: 'api',
   metaInfo: {
-      title: '404—云合同'
+    title: 'API'
   },
   data () {
     return {
-      
+      list: []
     }
   },
-  layout: 'user',
+  
   created () {
   },
   computed: {
-   
   },
   watch: {
   },
   mounted () {
-   
   },
   methods: {
-    
+   
   },
   components: {
+    
   }
+    
 }
 </script>
 
 <style lang="scss"  scoped >
 @import "~styles/base.scss";
-.page-404{
+.lvx-api {
   @include responsive-default {
-    height: calc(100% - 67px);
-    background: url("~assets/img/src/common/404.png") center center no-repeat;
-    background-color: #eeeced;
+    font-size: 60px;
+    text-align: center;
+    margin-top: 50px;
   }
 }
-
 </style>

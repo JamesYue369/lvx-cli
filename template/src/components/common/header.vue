@@ -2,7 +2,7 @@
   <header class="lvx-header">
     <nav class="nav-container clearfix">
       <div class="logo">
-        <router-link to="/"><img src="~/assets/img/src/common/logo.png" alt="Lvx"></router-link>
+        <!-- <router-link to="/"><img src="~/assets/img/src/common/logo.png" alt="Lvx"></router-link> -->
       </div>
       <div class="nav-menu">
         <router-link to="/demo" class="nav-item">示例</router-link>

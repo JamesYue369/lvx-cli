@@ -1,7 +1,7 @@
 <template>
   <div class="page-500">
 
-    <router-link to="/" class="back-link sas-text-decoration-none">返回云合同</router-link>
+    <router-link to="/" class="back-link sas-text-decoration-none">返回首页</router-link>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 export default {
   name: 'error-500',
   metaInfo: {
-      title: '云合同'
+      title: '500'
   },
   layout: 'normal',
   data () {

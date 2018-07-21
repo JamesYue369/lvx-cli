@@ -1,6 +1,6 @@
 // This is the webpack config used for unit tests.
 
-const utils = require('./utils')
+const utils = require('../utils')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
@@ -20,7 +20,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': require('../config/env/test.env')
+      'process.env': require('../env/test.env')
     })
   ]
 })

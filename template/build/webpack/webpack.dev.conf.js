@@ -1,6 +1,6 @@
-const utils = require('./utils')
+const utils = require('../utils')
 const webpack = require('webpack')
-const config = require('../config/env')
+const config = require('../env/')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -35,7 +35,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': require('../config/env/dev.env')
+      'process.env': require('../env/dev.env')
     }), 
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
@@ -43,7 +43,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.html',
+      template: 'framework/bin/index.html',
       inject: true
     }),
     new FriendlyErrorsPlugin()

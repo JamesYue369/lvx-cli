@@ -5,7 +5,7 @@
   </section>
 </template>
 <script>
-import * as types from '~/store/mutation-types'
+import * as types from '~/src/store/mutation-types'
 export default {
   name: 'login',
   metaInfo: {

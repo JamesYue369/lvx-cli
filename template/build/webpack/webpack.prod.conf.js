@@ -1,16 +1,16 @@
 const path = require('path')
-const utils = require('./utils')
+const utils = require('../utils')
 const webpack = require('webpack')
-const config = require('../config/env')
+const config = require('../env')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const PrerenderSpaPlugin = require('prerender-spa-plugin')
-const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
-const env = require('../config/env/prod.env')
+// const PrerenderSpaPlugin = require('prerender-spa-plugin')
+// const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
+const env = require('../env/prod.env')
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -59,7 +59,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: config.build.index,
-      template: 'index.html',
+      template: 'framework/bin/index.html',
       inject: true,
       // inject: 'head',
       minify: {
@@ -85,7 +85,7 @@ const webpackConfig = merge(baseWebpackConfig, {
           module.resource &&
           /\.js$/.test(module.resource) &&
           module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
+            path.join(__dirname, '../../node_modules')
           ) === 0
         )
       }
@@ -109,7 +109,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // copy custom static assets
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../static'),
+        from: path.resolve(__dirname, '../../src/static'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
@@ -166,20 +166,20 @@ if (config.build.prerender) {
     //   }
 
     // )
-    new PrerenderSpaPlugin({
-      staticDir: path.join(__dirname, '../dist/'+ config.build.projectName),
-      indexPath: path.join(__dirname, '../dist/'+ config.build.projectName, 'index.html'),
-      routes: [ '/', '/login', '/demo' ],
+    // new PrerenderSpaPlugin({
+    //   staticDir: path.join(__dirname, '../dist/'+ config.build.projectName),
+    //   indexPath: path.join(__dirname, '../dist/'+ config.build.projectName, 'index.html'),
+    //   routes: [ '/', '/login', '/demo' ],
 
-      renderer: new Renderer({
-        inject: {
-          foo: 'bar'
-        },
-        headless: false,
-        renderAfterElementExists: '#_lvx',
-        // renderAfterDocumentEvent: 'render-event'
-      })
-    })
+    //   renderer: new Renderer({
+    //     inject: {
+    //       foo: 'bar'
+    //     },
+    //     headless: false,
+    //     renderAfterElementExists: '#_lvx',
+    //     // renderAfterDocumentEvent: 'render-event'
+    //   })
+    // })
   )
 }
 

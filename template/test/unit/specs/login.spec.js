@@ -1,7 +1,7 @@
 import { createTest, createVue, destroyVM, createMock, createElmById, createVueApp } from '../util'
 import Vue from 'vue'
-import login from '~/pages/login'
-import apis from '~/config/api'
+import login from '~/src/pages/login'
+import apis from '~/src/config/api'
 
 describe('login.vue', () => {
   let vm;

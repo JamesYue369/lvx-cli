@@ -1,7 +1,7 @@
 
-import apis from '~/config/api'
+import apis from '~/src/config/api'
 import axios from '~/framework/core/http/axios'
-import * as types from '~/store/mutation-types'
+import * as types from '~/src/store/mutation-types'
 export default function ({store, to, from, next}, iterator) {
   return new Promise(async (resolve, reject)=>{
     if(to.path == '/404' || to.path == '/error/500') {

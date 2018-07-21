@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import LxPlugin from '~/framework/core/lx-plugin';
 import  { createRouter } from '~/framework/app/router';
-import createStore from '~/store';
+import createStore from '~/src/store';
 import MockAdapter from 'axios-mock-adapter';
 Vue.use(Vuex)
 Vue.use(LxPlugin)

@@ -2,8 +2,8 @@ const _ =  require('lodash');
 module.exports = {
   dev: {//此处配置代理
     proxyTable: {
-      '/user':{
-          target:'https://test.yunhetong.com',
+      '/icare':{
+          target:'http://127.0.0.1:8080',
           changeOrigin:true,
           secure: false,
           bypass: function(req, res, proxyOptions) {
@@ -26,7 +26,7 @@ module.exports = {
   router: {
     base: '',
     mode: 'history',
-    middleware: ['~/middleware/check-login', '~/middleware/check-auth'], //配置所有中间件资源
+    middleware: ['~/src/middleware/check-login', '~/src/middleware/check-auth'], //配置所有中间件资源
     meta: [{
       routers: [
         '/', 
@@ -44,7 +44,7 @@ module.exports = {
       routers: ['/api'],
       data: {
         layout: 'default',
-        middleware: ['~/middleware/check-login', '~/middleware/check-auth'],
+        middleware: ['~/src/middleware/check-login', '~/src/middleware/check-auth'],
         requireAuth: true,
       }
     }],
@@ -63,15 +63,15 @@ module.exports = {
       return routers
     }
   },
-  css: ['~/static/css/bootstrap/css/bootstrap.min.css', '~/static/css/animate/animate.css', '~/style/scss/lvx.variables.scss', '~/style/scss/lvx.scss',  '~/style/scss/common.scss', '~/assets/style/sprite/sprite.css', '~/assets/style/iconfont/iconfont.css'],
+  css: ['~/src/static/css/bootstrap/css/bootstrap.min.css', '~/src/static/css/animate/animate.css', '~/src/style/scss/lvx.variables.scss', '~/src/style/scss/lvx.scss',  '~/src/style/scss/common.scss', '~/src/assets/style/sprite/sprite.css', '~/src/assets/style/iconfont/iconfont.css'],
   plugins: [{
-    src: '~/plugins/lvx-ui',
+    src: '~/src/plugins/lvx-ui',
     sync: true
   },{
-    src: '~/plugins/ui',
+    src: '~/src/plugins/ui',
     sync: true
   },{
-    src: '~/plugins/vuelidate',
+    src: '~/src/plugins/vuelidate',
     sync: false
   }]
 }

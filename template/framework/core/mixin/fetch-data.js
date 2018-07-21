@@ -9,13 +9,9 @@ const fetchDataMixin = {
       } else {
         this.$lvx.loading.start()
       }
-      const r = fetchData({
-        to: this.$route.to,
-        from: this.$route.from
-      });
+      const r = fetchData.call(this);
       r.then((data = {})=> {
-
-        Object.assign(self, data);
+        Object.assign(self.$data, data);
         if(customeLoadingInstance) {
           customeLoadingInstance.close();
         } else {
@@ -26,19 +22,18 @@ const fetchDataMixin = {
   },
   beforeRouteUpdate (to, from, next) {
     const { fetchData } = this.$options
+    
     if (fetchData) {
       let customeLoadingInstance = null;
       if(typeof loading === 'function' || typeof loading === 'object') {
         customeLoadingInstance = loading();
       } else {
         this.$lvx.loading.start()
-      }
-      fetchData({
-        to: this.$route.to,
-        from: this.$route.from
-      }).then((data = {})=> {
+      }      
+      fetchData.call(this)
+      .then((data = {})=> {
 
-        Object.assign(this, data);
+        Object.assign(this.$data, data);
         if(customeLoadingInstance) {
           customeLoadingInstance.close();
         } else {

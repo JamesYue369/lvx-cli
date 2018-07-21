@@ -1,9 +1,9 @@
 const path = require('path')
-const utils = require('./utils')
+const utils = require('../utils')
 const SpritesmithPlugin = require('webpack-spritesmith')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const config = require('../config/env')
+const config = require('../env')
 const vueLoaderConfig = require('./vue-loader.conf')
 const isProduction = process.env.NODE_ENV === 'production'
 function resolve (dir) {
@@ -14,9 +14,9 @@ utils.generateMain(isProduction)
 utils.generateApp()
 utils.generateAppHtml(isProduction)
 module.exports = {
-  context: path.resolve(__dirname, '../'),
+  context: path.resolve(__dirname, '../../'),
   entry: {
-    app: ['babel-polyfill','./framework/app/main.js']
+    app: ['babel-polyfill','./framework/bin/main.js']
   },
   output: {
     path: config.build.assetsRoot,
@@ -32,8 +32,8 @@ module.exports = {
       '~': process.cwd(),
       // 'static': resolve('static'), 
       // 'assets': path.join(process.cwd(), 'assets')
-      'assets': path.join(__dirname, '..', 'assets'),
-      'styles': path.join(__dirname, '..', 'style/scss')
+      'assets': path.join(__dirname, '../../src', 'assets'),
+      'styles': path.join(__dirname, '../../src/', 'style/scss')
     }
   },
   module: {
@@ -88,12 +88,12 @@ module.exports = {
   plugins: [
     new SpritesmithPlugin({
       src: {
-          cwd: 'assets/img/sprite',
+          cwd: 'src/assets/img/sprite',
           glob: '*.*'
       },
       target: {
-          image: 'assets/style/sprite/spritesmith-generated/sprite.png',
-          css: 'assets/style/sprite/sprite.css'
+          image: 'src/assets/style/sprite/spritesmith-generated/sprite.png',
+          css: 'src/assets/style/sprite/sprite.css'
       },
       apiOptions: {
           cssImageRef: "spritesmith-generated/sprite.png"

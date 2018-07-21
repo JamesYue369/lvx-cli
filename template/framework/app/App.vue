@@ -14,33 +14,39 @@ import _ from 'lodash'
 import Application from '~/framework/gen/index'
 import convert from '~/framework/gen/convert'
 import compose from '~/framework/gen/compose'
+<%
+  let [mwsList, mwsStr]= [[], '']
+  mws.forEach((mw, i)=>{
+%>
+import mw<%= i%> from '<%= mw%>'
+<%
+    mwsList.push({key: mw, value: `mw${i}`})
+  })
+  // mwsStr = mwsList.join(',')
+%>
+<%
+  cssGlo.forEach((css, i)=>{
+%>
+import '<%= css%>'
+<%
+  })
+%>
+<%
+let lysStr = ''
+  layouts.forEach((ly, i)=>{
+    lysStr += `${i?'\t':''}_${ly.name}: () => import('${ly.path}' /* webpackChunkName: '${ly.path}' */).then(m => m.default || m),\n`
+  })
+%>
 
-import mw0 from '~/middleware/check-login'
-
-import mw1 from '~/middleware/check-auth'
-
-
-import '~/static/css/bootstrap/css/bootstrap.min.css'
-
-import '~/static/css/animate/animate.css'
-
-import '~/style/scss/lvx.variables.scss'
-
-import '~/style/scss/lvx.scss'
-
-import '~/style/scss/common.scss'
-
-import '~/assets/style/sprite/sprite.css'
-
-import '~/assets/style/iconfont/iconfont.css'
-
-
-
-
+<%
+let mwMapStr = ''
+  mwsList.forEach((mw, i)=>{
+    mwMapStr += `${i?'\t\t\t':''}'${mw.key}': ${mw.value}${i == mwsList.length-1? '': ','}${i == mwsList.length-1? '': '\n'}`
+  })
+%>
 
 let layouts = {
-  _default: () => import('~/layouts/default.vue' /* webpackChunkName: '~/layouts/default.vue' */).then(m => m.default || m),
-
+  <%= lysStr%>
 }
 export default {
   name: 'app',
@@ -54,8 +60,7 @@ export default {
   },
   created () {
     const mwMap = {
-      '~/middleware/check-login': mw0,
-			'~/middleware/check-auth': mw1
+      <%= mwMapStr%>
     };
     let self = this;
     window._lvx['router'] = this.$router;
@@ -70,24 +75,39 @@ export default {
         // debugger
         self.initLayout(matchVues.length ? lt ? lt: 'default' : 'default')
         .then(()=>{
-          let self1 = this;
-          let self = matchVues[0];
-          let customeLoadingInstance = null;
-          if(typeof self.loading === 'function' || typeof self.loading === 'object') {
-            customeLoadingInstance = self.loading(self1);
-          } else {
-            this.$lvx.loading.start()
-          }
-          if (typeof self.fetchData === 'function') {
-            self.fetchData.call(this, to, from, self1)
-            .then(()=>{
-              if(customeLoadingInstance) {
-                customeLoadingInstance.close();
-              } else {
-                this.$lvx.loading.finish()
-              }
-            })
-          } else {
+          let matchVm = matchVues[0];
+          // let customeLoadingInstance = null;
+          // if(typeof matchVm.loading === 'function' || typeof matchVm.loading === 'object') {
+          //   customeLoadingInstance = matchVm.loading(self);
+          // } else {
+          //   this.$lvx.loading.start()
+          // }
+          // if (typeof matchVm.fetchData === 'function') {
+          //   matchVm.fetchData.call(this, to, from, self)
+          //   .then(()=>{
+          //     if(customeLoadingInstance) {
+          //       customeLoadingInstance.close();
+          //     } else {
+          //       this.$lvx.loading.finish()
+          //     }
+          //   })
+          // } else {
+          //   setTimeout(()=>{
+          //     if(customeLoadingInstance) {
+          //       customeLoadingInstance.close();
+          //     } else {
+          //       this.$lvx.loading.finish()
+          //     }
+          //   }, 0);
+          // }
+          if (typeof matchVm.fetchData !== 'function') {
+            let customeLoadingInstance = null;
+            if(typeof matchVm.loading === 'function' || typeof matchVm.loading === 'object') {
+              customeLoadingInstance = matchVm.loading(self);
+            } else {
+              this.$lvx.loading.start()
+            }
+
             setTimeout(()=>{
               if(customeLoadingInstance) {
                 customeLoadingInstance.close();
@@ -96,6 +116,7 @@ export default {
               }
             }, 0);
           }
+
           next()
         })
       };
@@ -163,26 +184,7 @@ export default {
         .catch((e) => {
         })
       });
-    },
-    checkAuth (routerName) {
-      if (metaDic[routerName].requireAuth) {
-        return checkLogin()
-      } else {
-        return true
-      }
-      
-    },
-    checkRouterExist (path) {
-      return this._getNameByPath(path)
-    },
-    _getNameByPath (routerPath) {
-      let routers = this.$router.options.routes
-      let name = _.find(routers, function (r) {
-        return r.path === routerPath
-      })
-      return !!name ? name.name : null
     }
-
   },
   components: {
     LxLoading

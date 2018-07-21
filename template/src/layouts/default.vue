@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import header from '~/components/common/header'
-import footer from '~/components/common/footer'
-import * as types from '~/store/mutation-types'
+import header from '~/src/components/common/header'
+import footer from '~/src/components/common/footer'
+import * as types from '~/src/store/mutation-types'
 export default {
   data () {
     return {

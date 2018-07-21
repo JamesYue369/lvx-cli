@@ -1,6 +1,6 @@
 import * as axios from 'axios'
 import _ from 'lodash'
-import  { createRouter } from '../../app/router'
+import  { createRouter } from '~/framework/bin/router'
 
 const router = createRouter();
 let options = {

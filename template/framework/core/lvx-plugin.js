@@ -6,7 +6,7 @@ let lvxPlugin = {}
 // 图片加载错误
 function errorHandel (ev) {
   // console.log(1)
-  this.src = require('~/assets/img/src/common/default_load.png')
+  this.src = require('~/src/assets/img/src/common/default_load.png')
 }
 
 lvxPlugin.install = function (Vue, options) {

@@ -5,86 +5,79 @@ import {isNotBrowser} from '~/framework/core/utils'
 
 Vue.use(Router)
 
-const _777ba69c = () => import('~/pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
-const _77a66d33 = () => import('~/pages/login.vue' /* webpackChunkName: "pages/login" */).then(m => m.default || m)
-const _1a3ae264 = () => import('~/pages/api.vue' /* webpackChunkName: "pages/api" */).then(m => m.default || m)
-const _1a3a3182 = () => import('~/pages/404.vue' /* webpackChunkName: "pages/404" */).then(m => m.default || m)
-const _e3bcd644 = () => import('~/pages/demo/index.vue' /* webpackChunkName: "pages/demo/index" */).then(m => m.default || m)
-const _9cab4f0c = () => import('~/pages/error/500.vue' /* webpackChunkName: "pages/error/500" */).then(m => m.default || m)
+<%
 
-
-
-const scrollBehavior = function (to, from, savedPosition) {
-      if (savedPosition) {
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            resolve({ x: 0, y: 0 })
-          }, 0)
-        })
-      } else {
-        return { x: 0, y: 0 }
-      }
+function recursiveRoutes(routes, tab, components) {
+  let res = ''
+  routes.forEach((route, i) => {
+    route._name = '_' + hash(route.component)
+    components.push({ _name: route._name, component: route.component, name: route.name,_path: route.path, _filepath: route.filepath })
+    res += tab + '{\n'
+    res += tab + '\tpath: ' + "\'" + route.path + "\'" + ',\n'
+    res += tab + '\tcomponents: {\n' + '\t\t\t\t\'' + (route.meta ? route.meta.layout || 'default' : 'default') + '\': ' + route._name + '\n\t\t\t}'
+    res += (route.name) ? ',\n\t' + tab + 'name: ' + "\'" + route.name +"\'" : ''
+    if(route.meta) {
+      // res += ',\n\t' + tab + 'meta: ' + "{\n"
+      // _.forEach(route.meta, function(value, key) {
+      //   console.log(value);
+      //   res += '\t\t\t\t' + key + ': ' + value + ',\n'
+      // });
+      // res += tab + '\t' + "}\n"
+      // debugger
+      res += ',\n\t' + tab + 'meta: ' + JSON.stringify(route.meta)
     }
 
+    res += (route.children) ? ',\n\t' + tab + 'children: [\n' + recursiveRoutes(routes[i].children, tab + '\t\t', components) + '\n\t' + tab + ']' : ''
+    res += '\n' + tab + '}' + (i + 1 === routes.length ? '' : ',\n')
+  })
+  debugger
+  return res
+}
+
+
+const _components = []
+const _routes = recursiveRoutes(router.routes, '\t\t', _components)
+_.uniqBy(_components).forEach((route) => { %>const <%= route._name %> = () => import('<%= "~/src/" + route._filepath %>' /* webpackChunkName: "<%= route._filepath.replace('.vue', '') %>" */).then(m => m.default || m)
+<% }) %>
+
+<% if (router.scrollBehavior) { %>
+const scrollBehavior = <%= serialize(router.scrollBehavior).replace('scrollBehavior(', 'function(') %>
+<% } else { %>
+const scrollBehavior = (to, from, savedPosition) => {
+  // SavedPosition is only available for popstate navigations.
+  if (savedPosition) {
+    return savedPosition
+  } else {
+    let position = {}
+    // If no children detected
+    if (to.matched.length < 2) {
+      // Scroll to the top of the page
+      position = { x: 0, y: 0 }
+    }
+    else if (to.matched.some((r) => r.components.default.options.scrollToTop)) {
+      // If one of the children has scrollToTop option set to true
+      position = { x: 0, y: 0 }
+    }
+    // If link has anchor, scroll to anchor by returning the selector
+    if (to.hash) {
+      position = { selector: to.hash }
+    }
+    return position
+  }
+}
+<% } %>
 
 export function createRouter () {
   return new Router({
     // mode: isNotBrowser() ? 'hash': 'history' ,
-    mode: 'history',
-    base: '',
-    linkActiveClass: 'lx-link-active',
-    linkExactActiveClass: 'lx-link-exact-active',
+    mode: '<%= router.mode %>',
+    base: '<%= router.base %>',
+    linkActiveClass: '<%= router.linkActiveClass %>',
+    linkExactActiveClass: '<%= router.linkExactActiveClass %>',
     scrollBehavior,
     routes: [
-		{
-			path: '/',
-			components: {
-				'default': _777ba69c
-			},
-			name: 'index',
-			meta: {"layout":"default","middleware":[],"requireAuth":false}
-		},
-		{
-			path: '/login',
-			components: {
-				'default': _77a66d33
-			},
-			name: 'login',
-			meta: {"layout":"default","middleware":[],"requireAuth":false}
-		},
-		{
-			path: '/api',
-			components: {
-				'default': _1a3ae264
-			},
-			name: 'api',
-			meta: {"layout":"default","middleware":["~/middleware/check-login","~/middleware/check-auth"],"requireAuth":true}
-		},
-		{
-			path: '/404',
-			components: {
-				'default': _1a3a3182
-			},
-			name: '404',
-			meta: {"layout":"default","middleware":[],"requireAuth":false}
-		},
-		{
-			path: '/demo',
-			components: {
-				'default': _e3bcd644
-			},
-			name: 'demo',
-			meta: {"layout":"default","middleware":[],"requireAuth":false}
-		},
-		{
-			path: '/error/500',
-			components: {
-				'default': _9cab4f0c
-			},
-			name: 'error-500',
-			meta: {"layout":"default","middleware":[],"requireAuth":false}
-		}
+<%- _routes %>
     ],
-    fallback: false
+    fallback: <%= router.fallback %>
   })
 }
