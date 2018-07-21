@@ -1,8 +1,8 @@
 {
-  "name": "aaa",
+  "name": "{{projectName}}",
   "version": "1.0.1",
-  "description": "bbb",
-  "author": "ccc",
+  "description": "{{description}}",
+  "author": "{{author}}",
   "private": true,
   "scripts": {
     "bootstrap": "yarn || npm i",
