@@ -1,5 +1,5 @@
 <template>
-  <div class="sas-breadcrumb">
+  <div class="ui-breadcrumb">
     <lvx-breadcrumb  :separator="separator" >
       <slot></slot>
     </lvx-breadcrumb>  
@@ -7,7 +7,7 @@
 </template>
 <script>
   export default {
-    name: 'SasBreadcrumb',
+    name: 'UiBreadcrumb',
     data: function () {
       return {
         separator: '/'
@@ -17,15 +17,15 @@
     }
   };
 </script>
-<style lang="scss" type="text/scss" >
-  .sas-breadcrumb{
-    .el-breadcrumb__item{
-      .el-breadcrumb__inner{
+<style lang="scss" >
+  .ui-breadcrumb{
+    .lvx-breadcrumb__item{
+      .lvx-breadcrumb__inner{
         color: #d9d9d9;
         font-weight: normal;
       }
       &:last-child{
-        .el-breadcrumb__inner{
+        .lvx-breadcrumb__inner{
           color: #333;
         }
       }

@@ -1,18 +1,11 @@
-<!-- <template>
-  <div class="sas-select">
-    <el-select v-model="value" :placeholder="placeholder">
-      <slot></slot>
-    </el-select>  
-  </div>
-</template> -->
 <script>
 
   export default {
-    name: 'SasSelect',
+    name: 'UiSelect',
     render (h) {
       // debugger
       return (
-        <div class="sas-select">
+        <div class="ui-select">
           <lvx-select { ...{ attrs: this.$props } } size="small" on-change={this.changeHandle}  v-model={this.value}>
             {this.$slots.default}
           </lvx-select>  
@@ -74,9 +67,9 @@
     }
   };
 </script>
-<style lang="scss" type="text/scss" >
+<style lang="scss" >
 @import "~styles/base.scss";
-  .sas-select{
+  .ui-select{
     display: inline;
     .lvx-input--small {
       .lvx-input__inner{

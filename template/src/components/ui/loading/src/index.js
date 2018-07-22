@@ -12,7 +12,7 @@ const service = function ({background = 'rgba(255,255,255,0)', spinnerText} = {}
 				<div class="two spinner-cell"></div>
 				<div class="three spinner-cell"></div>
 			`,
-			spinnerClass: 'sas-loading-spinner',
+			spinnerClass: 'ui-loading-spinner',
 			background: 'rgba(198, 198, 198, 0.3)'
   		})
   	}

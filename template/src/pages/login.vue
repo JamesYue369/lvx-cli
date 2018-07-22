@@ -1,7 +1,7 @@
 <template>
-  <section class="lvx-login">
+  <section class="page-login">
       这是登陆页面
-      <div><sas-button category="primary" @click="login">登陆</sas-button></div>
+      <div><ui-button category="primary" @click="login">登陆</ui-button></div>
   </section>
 </template>
 <script>
@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss"  scoped >
 @import "~styles/base.scss";
-.lvx-login {
+.page-login {
   @include responsive-default {
     font-size: 60px;
     text-align: center;

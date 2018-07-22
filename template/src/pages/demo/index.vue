@@ -1,32 +1,32 @@
 <template>
-<section class="row saas-demo">
+<section class="row page-demo">
     <div class="lvx-tooltip-bottom">
         Tip hover here
         <span class="tooltiptext">aa</span>
     </div>
-    <sas-breadcrumb >
-        <sas-breadcrumb-item :to="{ path: '/' }">首页</sas-breadcrumb-item>
-        <sas-breadcrumb-item>活动管理</sas-breadcrumb-item>
-        <sas-breadcrumb-item>活动列表</sas-breadcrumb-item>
-        <sas-breadcrumb-item >活动详情</sas-breadcrumb-item>
-    </sas-breadcrumb>
+    <ui-breadcrumb >
+        <ui-breadcrumb-item :to="{ path: '/' }">首页</ui-breadcrumb-item>
+        <ui-breadcrumb-item>活动管理</ui-breadcrumb-item>
+        <ui-breadcrumb-item>活动列表</ui-breadcrumb-item>
+        <ui-breadcrumb-item >活动详情</ui-breadcrumb-item>
+    </ui-breadcrumb>
     <div>
-        <sas-select  placeholder="请选择" :model="value" @change="change" >
-            <sas-option
+        <ui-select  placeholder="请选择" :model="value" @change="change" >
+            <ui-option
               v-for="item in options"
               :key="item.value"
               :label="item.label"
               :value="item.value">
-            </sas-option>
-        </sas-select>
-        <sas-select  placeholder="请选择" :model="value" >
-            <sas-option
+            </ui-option>
+        </ui-select>
+        <ui-select  placeholder="请选择" :model="value" >
+            <ui-option
               v-for="item in options"
               :key="item.value"
               :label="item.label"
               :value="item.value">
-            </sas-option>
-        </sas-select>
+            </ui-option>
+        </ui-select>
         
     </div>
 </section>
@@ -84,7 +84,7 @@ export default {
 
 <style lang="scss"  scoped >
 @import "~styles/base.scss";
-.saas-demo{
+.page-demo{
     margin-top: 67px;
 }
 </style>

@@ -1,7 +1,6 @@
 <template>
-  <section class="lvx-api">
+  <section class="page-api">
       这是API页面
-      <cus-list/>
   </section>
 </template>
 <script>
@@ -37,7 +36,7 @@ export default {
 
 <style lang="scss"  scoped >
 @import "~styles/base.scss";
-.lvx-api {
+.page-api {
   @include responsive-default {
     font-size: 60px;
     text-align: center;

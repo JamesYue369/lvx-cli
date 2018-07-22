@@ -1,14 +1,14 @@
 <script>
 
   export default {
-    name: 'SasButton',
+    name: 'UiButton',
     render (h) {
       // debugger
       const categoryMap = {
-        primary: 'sas-button--primary',
-        secondary: 'sas-button--secondary',
-        gray: 'sas-button--gray',
-        dotted: 'sas-button--dotted'
+        primary: 'ui-button--primary',
+        secondary: 'ui-button--secondary',
+        gray: 'ui-button--gray',
+        dotted: 'ui-button--dotted'
       }
       const sizeMap = {
         default: 'lvx-button--default',
@@ -21,7 +21,7 @@
       }
       // debugger
       return (
-        <lvx-button class="sas-button" {...data} on-click={this.clickHandle}>
+        <lvx-button class="ui-button" {...data} on-click={this.clickHandle}>
           {this.$slots.default}
         </lvx-button>
         );
@@ -55,10 +55,10 @@
     }
   };
 </script>
-<style lang="scss" type="text/scss" >
+<style lang="scss" >
 @import "~styles/base.scss";
-  .sas-button{
-    &.sas-button--primary{
+  .ui-button{
+    &.ui-button--primary{
       background-color: $theme-color;
       color: #fff;
       border-color: $theme-color;
@@ -88,7 +88,7 @@
         background-color: $hover-color;
       }
     }
-    &.sas-button--secondary{
+    &.ui-button--secondary{
       background-color: #fff;
       color: $theme-color;
       border-color: $theme-color;
@@ -119,7 +119,7 @@
         background-color: #fff;
       }
     }
-    &.sas-button--gray{
+    &.ui-button--gray{
       background-color: #fff;
       color: $font-color;
       border-color: $border-color;
@@ -152,7 +152,7 @@
       }
     }
 
-    &.sas-button--dotted{
+    &.ui-button--dotted{
       background-color: #fff;
       color: $theme-color;
       border-color: $theme-color;

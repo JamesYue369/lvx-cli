@@ -1,5 +1,5 @@
 <template>
-  <footer class="lx-ui-footer">
+  <footer class="comp-footer">
     <div class="footer-container">
       Copyright © James Yue
     </div>
@@ -21,9 +21,9 @@ export default {
 }
 </script>
 
-<style lang="scss" type="text/scss" scoped>
+<style lang="scss"  scoped>
 @import "~styles/base.scss";
-.lx-ui-footer{
+.comp-footer{
   @include responsive-default {
     position: absolute;
     bottom: 0;

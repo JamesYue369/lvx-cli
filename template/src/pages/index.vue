@@ -1,5 +1,5 @@
 <template>
-  <div class="lvx-index">
+  <div class="page-home">
     <section class="lvx-introduct container">
       <div class="row introduct-container">
         <div class="col-xs-4 logo">
@@ -12,6 +12,7 @@
       </div>
       
     </section>
+  </div>
   </div>
 </template>
 
@@ -43,7 +44,8 @@ export default {
 
 <style lang="scss"  scoped >
 @import "~styles/base.scss";
-.lvx-index {
+.page-home {
+  /*this is default rules */
   @include responsive-default {
     .lvx-introduct{
       .introduct-container{
@@ -69,6 +71,34 @@ export default {
         }
       }
     }
+  }
+  /*this is less than 768px rules , device on mobile*/
+  @include responsive-m {
+
+  }
+  /*this is great than 992px and less than 768px , device on all pads vertical*/
+  @include responsive-pv {
+
+  }
+
+  /*this is great than 992px and less than 1200px  rules, device on all pads horizion and middle desktop screen*/
+  @include responsive-phmd {
+
+  }
+
+  /*this is custome min width rules*/
+  @include responsive-gt(1366px) {
+
+  }
+
+  /*this is custome max width rules*/
+  @include responsive-lt(1600px) {
+
+  }
+
+  /*this is custome min width and max width rules*/
+  @include responsive-customize(1366px, 1600px) {
+
   }
 }
 </style>

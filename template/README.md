@@ -21,6 +21,3 @@ npm run build --report
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
-##常用CMD命令行
-# 强制删除文件夹及文件  rd/s/q 盘符:\某个文件夹
-#    "prerender-spa-plugin": "3.0.0",

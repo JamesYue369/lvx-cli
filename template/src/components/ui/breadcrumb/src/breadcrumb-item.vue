@@ -5,7 +5,7 @@
 </template>
 <script>
   export default {
-    name: 'SasBreadcrumbItem',
+    name: 'UiBreadcrumbItem',
     props: {
       to: {},
       replace: Boolean

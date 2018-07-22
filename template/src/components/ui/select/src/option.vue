@@ -1,11 +1,6 @@
-<!-- <template>
-  <el-option :value="value" :label="label">
-    <slot></slot>
-  </el-option>
-</template> -->
 <script>
   export default {
-    name: 'SasOption',
+    name: 'UiOption',
     data: function () {
       return {
         

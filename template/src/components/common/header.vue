@@ -1,5 +1,5 @@
 <template>
-  <header class="lvx-header">
+  <header class="comp-header">
     <nav class="nav-container clearfix">
       <div class="logo">
         <!-- <router-link to="/"><img src="~/assets/img/src/common/logo.png" alt="Lvx"></router-link> -->
@@ -36,9 +36,9 @@ export default {
 }
 </script>
 
-<style lang="scss" type="text/scss" scoped>
+<style lang="scss"  scoped >
 @import "~styles/base.scss";
-.lvx-header{
+.comp-header{
   @include responsive-default {
     .nav-container{
       height: 60px;
