@@ -253,6 +253,12 @@ exports.generateRoutes = async function (isProduction) {
 function importFiles (path) {
   return require(path)
 }
+function mkdirFrameoworkbin () {
+  let isExist = fs.existsSync('./framework/bin');
+  if(!isExist) {
+    fs.mkdirSync('./framework/bin');
+  }
+}
 exports.generateMain = function (isProduction) {
   // function importPlugins () {
   //   let pluginConfigPath = path.join(process.cwd(), 'config', '/plugin')
