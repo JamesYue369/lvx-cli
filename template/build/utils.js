@@ -231,8 +231,8 @@ exports.generateRoutes = async function (isProduction) {
       mode: appConfig.router.mode || 'history',
       base: appConfig.router.base || '',
       scrollBehavior: appConfig.router.scrollBehavior,
-      linkActiveClass: appConfig.router.linkActiveClass || 'lx-link-active',
-      linkExactActiveClass: appConfig.router.linkExactActiveClass || 'lx-link-exact-active',
+      linkActiveClass: appConfig.router.linkActiveClass || 'lvx-link-active',
+      linkExactActiveClass: appConfig.router.linkExactActiveClass || 'lvx-link-exact-active',
       fallback: false,
     },
     hash: hash,
@@ -241,9 +241,8 @@ exports.generateRoutes = async function (isProduction) {
     decode: decode
   })
   .then(function (str) {
+    mkdirFrameoworkbin();
     let routerPath = './framework/bin/router.js';
-    debugger
-    // console.log(_.unescape(str))
     fs.writeFileSync(routerPath, _.unescape(str) );
   })
   .catch(function (err) {
@@ -253,6 +252,7 @@ exports.generateRoutes = async function (isProduction) {
 function importFiles (path) {
   return require(path)
 }
+
 function mkdirFrameoworkbin () {
   let isExist = fs.existsSync('./framework/bin');
   if(!isExist) {
@@ -270,6 +270,7 @@ exports.generateMain = function (isProduction) {
     _: _
   })
   .then(function (str) {
+    mkdirFrameoworkbin();
     let routerPath = './framework/bin/main.js';
     fs.writeFileSync(routerPath, _.unescape(str) );
   })
@@ -289,6 +290,7 @@ exports.generateApp = async function () {
     cssGlo: cssGlobal
   })
   .then(function (str) {
+    mkdirFrameoworkbin();
     let path = './framework/bin/App.vue';
     fs.writeFileSync(path, _.unescape(str) );
   })
@@ -302,6 +304,7 @@ exports.generateAppHtml = async function (isProduction) {
     isProduction: isProduction
   })
   .then(function (str) {
+    mkdirFrameoworkbin();
     let path = './framework/bin/index.html';
     fs.writeFileSync(path, _.unescape(str) );
   })
