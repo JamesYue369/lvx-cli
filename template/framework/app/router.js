@@ -30,7 +30,6 @@ function recursiveRoutes(routes, tab, components) {
     res += (route.children) ? ',\n\t' + tab + 'children: [\n' + recursiveRoutes(routes[i].children, tab + '\t\t', components) + '\n\t' + tab + ']' : ''
     res += '\n' + tab + '}' + (i + 1 === routes.length ? '' : ',\n')
   })
-  debugger
   return res
 }
 

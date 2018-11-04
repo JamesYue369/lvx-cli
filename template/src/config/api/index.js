@@ -1,11 +1,5 @@
-const proxy_cas = '/cas'
-const proxy_user = '/user'
-const proxy_contract = '/contract'
-
+const proxy_prefix = '/api'
 const routers = {
-  'userInfo': `${proxy_user}/userInfo/initUser`, //检索登陆用户信息
-  'getUserName': `${proxy_user}/homePage/homePage`, //验证是否登陆
-  'medicalList' : `/icare/medical/getMedicals`,
-  'getMedical': `/icare/medical/getMedicalInfoByCode`
+  'userAuths': `${proxy_prefix}/user/menus/false`, //检索登陆用户权限信息
 }
 export default routers

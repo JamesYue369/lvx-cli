@@ -26,10 +26,10 @@ export default {
   },
   methods: {
     login() {
-      let loadingInstance = this.$createLoading()
+      this.$createLoading()
       this.$store.commit(types.SET_ISLOGIN, true)
       setTimeout(()=>{
-        loadingInstance.close()
+        this.$closeLoading()
         this.$router.push('/')
       }, 2000)
     }

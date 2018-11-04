@@ -1,23 +1,33 @@
-# demo1
+
+
+# ntmaxcar 
 
 > A Vue.js project
 
 ## Build Setup
 
-``` bash
-# install dependencies
-npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+### install dependencies
+`yarn`
 
-# build for production with minification
-npm run build
+### serve with hot reload at localhost:8080
+`yarn run dev`
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+### build for production with minification
+`yarn run build`
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 指南
+- [全局数据](./docs/base-data.md)
+- [组件](./docs/components.md)
+- [全局filter过滤器](./docs/filters.md)
+- [全局CSS](./docs/css.md)
+- [数据库字典](./docs/mysql/database.xlsx)
+- [Mock数据](./docs/mock.md)
+- [全局方法](./docs/method.md)
+- [实例方法](./docs/i-method.md)
+
+
+
+
 
 

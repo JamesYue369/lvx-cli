@@ -25,6 +25,7 @@ export default {
   },
   methods: {
     start () {
+      let self = this;
       this.show = true
       this.canSuccess = true
       if (this._timer) {

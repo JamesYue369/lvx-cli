@@ -1,0 +1,35 @@
+@mixin margin($direction,$px) {
+    @if $direction == top {
+        margin-top: $px
+    }
+    @else if $direction == bottom {
+        margin-bottom: $px;
+    }
+    @else if $direction == right {
+        margin-right: $px;
+    }
+    @else if $direction == left {
+        margin-left: $px;
+    }
+    @else if $direction == all {
+        margin: $px
+    }
+}
+
+@mixin padding($direction,$px) {
+    @if $direction == top {
+        padding-top: $px
+    }
+    @else if $direction == bottom {
+        padding-bottom: $px;
+    }
+    @else if $direction == right {
+        padding-right: $px;
+    }
+    @else if $direction == left {
+        padding-left: $px;
+    }
+    @else if $direction == all {
+        padding: $px
+    }
+}

@@ -1,9 +1,9 @@
 <template>
   <div id="_lvx">
     <lx-loading ref="loading"></lx-loading>
-    <keep-alive>
+    <!-- <keep-alive> -->
       <component v-if="layout" :is="layout"></component>
-    </keep-alive>
+    <!-- </keep-alive> -->
   </div>
 </template>
 
@@ -64,6 +64,7 @@ export default {
     };
     let self = this;
     window._lvx['router'] = this.$router;
+    window._lvx['store'] = this.$store;
     self.$router.beforeResolve((to, from, next) => {
       let matchVues = self.$router.getMatchedComponents(to)
       let funParams = {
@@ -103,16 +104,16 @@ export default {
           if (typeof matchVm.fetchData !== 'function') {
             let customeLoadingInstance = null;
             if(typeof matchVm.loading === 'function' || typeof matchVm.loading === 'object') {
-              customeLoadingInstance = matchVm.loading(self);
+              // customeLoadingInstance = matchVm.loading(self);
             } else {
-              this.$lvx.loading.start()
+              // this.$lvx.loading.start()
             }
 
             setTimeout(()=>{
               if(customeLoadingInstance) {
-                customeLoadingInstance.close();
+                // customeLoadingInstance.close();
               } else {
-                this.$lvx.loading.finish()
+                // this.$lvx.loading.finish()
               }
             }, 0);
           }

@@ -42,7 +42,7 @@ module.exports = {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        // exclude: [/node_modules/, resolve('assets'), ],
+        exclude: [/node_modules/, resolve('assets') ],
         include: [resolve('components'), resolve('framework'), resolve('layouts'), resolve('pages'), resolve('store')],
         options: {
           formatter: require('eslint-friendly-formatter'),

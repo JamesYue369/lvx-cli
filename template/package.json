@@ -24,7 +24,7 @@
     "detect-browser": "^2.0.0",
     "is-generator-function": "^1.0.6",
     "jquery": "^3.3.1",
-    "lvx-ui": "2.0.16",
+    "lvx-ui": "2.0.26",
     "node-sass": "^4.6.1",
     "postcss-loader": "^2.0.8",
     "sass-loader": "^6.0.6",

@@ -63,7 +63,7 @@ module.exports = {
       return routers
     }
   },
-  css: ['~/src/static/css/bootstrap/css/bootstrap.min.css', '~/src/static/css/animate/animate.css', '~/src/style/scss/lvx.variables.scss', '~/src/style/scss/lvx.scss',  '~/src/style/scss/common.scss', '~/src/assets/style/sprite/sprite.css', '~/src/assets/style/iconfont/iconfont.css'],
+  css: ['~/static/css/bootstrap/css/bootstrap.min.css', '~/static/css/animate/animate.css', '~/src/style/scss/lvx.variables.scss', '~/src/style/scss/lvx.scss',  '~/src/style/scss/common.scss', '~/src/assets/style/sprite/sprite.css', '~/src/assets/style/iconfont/iconfont.css'],
   plugins: [{
     src: '~/src/plugins/lvx-ui',
     sync: true

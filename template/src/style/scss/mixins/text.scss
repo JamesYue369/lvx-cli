@@ -5,4 +5,17 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+@mixin text-decoration($value) {
+  &:hover{
+    text-decoration: $value;
+  }
+  &:active{
+    text-decoration: $value;
+  }
+  &:visited {
+    text-decoration: $value;
+  }
+  &:focus {
+    text-decoration: $value;
+  }
+}

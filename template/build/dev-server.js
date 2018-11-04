@@ -11,7 +11,7 @@ var proxy = require('http-proxy-middleware');
 var app = express();
 
 // all environments
-app.set('port', 8081);
+app.set('port', 8087);
 
 // app.use(express.favicon());
 // app.use(express.logger('dev'));
@@ -19,11 +19,10 @@ app.set('port', 8081);
 // app.use(express.urlencoded());
 // app.use(express.methodOverride());
 // app.use(app.router);
-app.use('/user', proxy({target: 'https://dev.yunhetong.com', changeOrigin: true, secure: false,}))
-app.use('/cas', proxy({target: 'https://dev.yunhetong.com', changeOrigin: true, secure: false,}))
-app.use('/contract', proxy({target: 'https://dev.yunhetong.com', changeOrigin: true, secure: false,}))
+app.use('/api', proxy({target: 'http://yl-t.maxcar.com.cn/', changeOrigin: true, secure: false,}))
+
 app.use(require('connect-history-api-fallback')())
-app.use(express.static(path.join(__dirname, '../dist/lvx')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 // development only
 if ('development' == app.get('env')) {

@@ -2,7 +2,9 @@
   <div class="layout">
     <lvx-header />
     <transition name="fade" mode="out-in">
-      <router-view name="default"/>
+      <keep-alive>
+        <router-view name="default"/>
+      </keep-alive>
     </transition>
     <lvx-footer />
   </div>

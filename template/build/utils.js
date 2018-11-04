@@ -220,6 +220,7 @@ exports.generateRoutes = async function (isProduction) {
     let [md, routes] = [rmd.data, rmd.routers];
     _.forEach(routes, function(r) {
       let tempFileRoute = _.find(fileRoutesData, function(o) { return o.path == r; });
+      console.log(tempFileRoute)
       tempFileRoute.meta = Object.assign(tempFileRoute.meta || {}, md);
     });
   });

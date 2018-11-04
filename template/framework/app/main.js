@@ -44,7 +44,12 @@ Vue.use(LxPlugin)
 Vue.mixin(fetchData);
 const store = createStore();
 const router = createRouter();
-
+router.afterEach((to, from) => {
+	if(document.getElementsByClassName("container-main")[0]==undefined){
+	}else if(to.query.anchor!==true){
+		document.getElementsByClassName("container-main")[0].scrollTop=0
+	}
+});
 <%
 let syncPlugins = []
 pluginsTemp.forEach(function (v, i) {
